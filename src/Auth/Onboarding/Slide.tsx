@@ -1,16 +1,30 @@
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
+
+export const SLIDER_HEIGHT = 0.61 * height;
 
 interface SlideProps {
   label: string;
   right?: boolean;
 }
 
-const Slide = ({ label }: SlideProps) => {
+const Slide = ({ label, right }: SlideProps) => {
+  const transform = [
+    {
+      translateY: (SLIDER_HEIGHT - 100) / 2,
+    },
+    {
+      translateX: right ? width / 2 - 50 : -width / 2 + 50,
+    },
+    {
+        rotate: right ? "-90deg" : "90deg"
+    }
+  ];
+
   return (
     <View style={styles.container}>
-      <View style={styles.titleContainer}>
+      <View style={[styles.titleContainer, { transform }]}>
         <Text style={styles.title}>{label}</Text>
       </View>
     </View>
@@ -22,16 +36,15 @@ const styles = StyleSheet.create({
     width,
   },
   titleContainer: {
-    backgroundColor: "red",
     height: 100,
-    justifyContent: 'center'
+    justifyContent: "center",
   },
   title: {
     fontSize: 80,
     lineHeight: 80,
     fontFamily: "SFProText-Bold",
     color: "#FFFFFF",
-    textAlign: 'center'
+    textAlign: "center",
   },
 });
 
