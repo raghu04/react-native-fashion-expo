@@ -8,13 +8,20 @@ import Animated, {
 
 const { width } = Dimensions.get("window");
 
+const slides = [
+  { label: "Relaxed", color: "#BFEAF5" },
+  { label: "Playful", color: "#BEECC4" },
+  { label: "Eccentric", color: "#FFE4D9" },
+  { label: "Funky", color: "#FFDDDD" },
+];
+
 const Onboarding = () => {
   const x = useSharedValue(0);
 
   const backgroundColor = interpolateColor(
     x.value,
-    [0, width, width * 2, width * 3],
-    ["#BFEAF5", "#BEECC4", "#FFE4D9", "#FFDDDD"]
+    slides.map((_, i) => i * width),
+    slides.map((slide) => slide.color)
   );
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -37,10 +44,9 @@ const Onboarding = () => {
           bounces={false}
           onScroll={scrollHandler}
         >
-          <Slide label="Relaxed" />
-          <Slide label="Playful" right />
-          <Slide label="Eccentric" />
-          <Slide label="Funky" right />
+          {slides.map(({ label }, index) => (
+            <Slide key={index} {...{ label }} right={!!(index % 2)} />
+          ))}
         </Animated.ScrollView>
       </Animated.View>
       <View style={styles.footer}>
