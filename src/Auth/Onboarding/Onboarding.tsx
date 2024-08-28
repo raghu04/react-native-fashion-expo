@@ -97,6 +97,9 @@ const Onboarding = () => {
             <SubSlide
               key={index}
               last={index === slides.length - 1}
+              onPress={() => {
+                console.log("Pressed");
+              }}
               {...{ subtitle, description }}
             />
           ))}
