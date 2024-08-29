@@ -8,6 +8,7 @@ import Animated, {
 
 import Slide, { SLIDER_HEIGHT } from "./Slide";
 import SubSlide from "./SubSlide";
+import { useRef } from "react";
 
 const BORDER_RADIUS = 75;
 
@@ -45,6 +46,8 @@ const slides = [
 ];
 
 const Onboarding = () => {
+  const scroll = useRef<Animated.ScrollView>(null);
+
   const x = useSharedValue(0);
 
   const backgroundColor = interpolateColor(
@@ -67,6 +70,7 @@ const Onboarding = () => {
       <Animated.View style={[styles.slider, { backgroundColor }]}>
         <Animated.ScrollView
           horizontal
+          ref={scroll}
           snapToInterval={width}
           decelerationRate="fast"
           showsHorizontalScrollIndicator={false}
@@ -98,7 +102,12 @@ const Onboarding = () => {
               key={index}
               last={index === slides.length - 1}
               onPress={() => {
-                console.log("Pressed");
+                // if (scroll.current) {
+                //   scroll.current.getNode().scrollTo({
+                //     x: width * (index + 1),
+                //     animated: true,
+                //   });
+                // }
               }}
               {...{ subtitle, description }}
             />
