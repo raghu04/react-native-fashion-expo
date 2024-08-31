@@ -3,6 +3,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { Onboarding } from "./src/Auth";
 import { LoadAssets } from "./src/components";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -15,11 +16,13 @@ const fonts = {
 export default function App() {
   return (
     <LoadAssets {...{ fonts }}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <AuthStack.Navigator screenOptions={{ headerShown: false }}>
-          <AuthStack.Screen name="Onboarding" component={Onboarding} />
-        </AuthStack.Navigator>
-      </GestureHandlerRootView>
+      <SafeAreaProvider style={{ flex: 1 }}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <AuthStack.Navigator screenOptions={{ headerShown: false }}>
+            <AuthStack.Screen name="Onboarding" component={Onboarding} />
+          </AuthStack.Navigator>
+        </GestureHandlerRootView>
+      </SafeAreaProvider>
     </LoadAssets>
   );
 }
