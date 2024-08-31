@@ -2,13 +2,13 @@ import { Dimensions, StyleSheet, View } from "react-native";
 
 import Animated, {
   interpolateColor,
+  useAnimatedRef,
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
 
 import Slide, { SLIDER_HEIGHT } from "./Slide";
 import SubSlide from "./SubSlide";
-import { useRef } from "react";
 
 const BORDER_RADIUS = 75;
 
@@ -46,7 +46,7 @@ const slides = [
 ];
 
 const Onboarding = () => {
-  const scroll = useRef<Animated.ScrollView>(null);
+  const scroll = useAnimatedRef<Animated.ScrollView>();
 
   const x = useSharedValue(0);
 
@@ -102,12 +102,12 @@ const Onboarding = () => {
               key={index}
               last={index === slides.length - 1}
               onPress={() => {
-                // if (scroll.current) {
-                //   scroll.current.getNode().scrollTo({
-                //     x: width * (index + 1),
-                //     animated: true,
-                //   });
-                // }
+                if (scroll.current) {
+                  scroll.current.scrollTo({
+                    x: width * (index + 1),
+                    animated: true,
+                  });
+                }
               }}
               {...{ subtitle, description }}
             />
