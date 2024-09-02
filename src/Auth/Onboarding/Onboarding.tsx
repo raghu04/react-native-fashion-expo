@@ -6,10 +6,12 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
+import { useTheme } from "@shopify/restyle";
 
 import Slide, { SLIDER_HEIGHT, BORDER_RADIUS } from "./Slide";
 import Dot from "./Dot";
 import SubSlide from "./SubSlide";
+import { Theme } from "../../../theme";
 
 const { width } = Dimensions.get("window");
 
@@ -49,6 +51,9 @@ const slides = [
 ];
 
 const Onboarding = () => {
+  const theme = useTheme<Theme>();
+  const { background } = theme.colors;
+
   const scroll = useAnimatedRef<Animated.ScrollView>();
 
   const x = useSharedValue(0);
@@ -69,7 +74,7 @@ const Onboarding = () => {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: background }]}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
         <Animated.ScrollView
           horizontal
@@ -132,7 +137,6 @@ const Onboarding = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
   },
   slider: {
     height: SLIDER_HEIGHT,
