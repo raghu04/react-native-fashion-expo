@@ -17,8 +17,8 @@ const fonts = {
 
 export default function App() {
   return (
-    <LoadAssets {...{ fonts }}>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <LoadAssets {...{ fonts }}>
         <SafeAreaProvider style={{ flex: 1 }}>
           <GestureHandlerRootView style={{ flex: 1 }}>
             <AuthStack.Navigator screenOptions={{ headerShown: false }}>
@@ -26,7 +26,7 @@ export default function App() {
             </AuthStack.Navigator>
           </GestureHandlerRootView>
         </SafeAreaProvider>
-      </ThemeProvider>
-    </LoadAssets>
+      </LoadAssets>
+    </ThemeProvider>
   );
 }

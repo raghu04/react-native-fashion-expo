@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   picture: {
     ...StyleSheet.absoluteFillObject,
-    top: BORDER_RADIUS,
+    top: BORDER_RADIUS * 1.3,
     height: undefined,
     width: undefined,
     borderBottomRightRadius: BORDER_RADIUS,
