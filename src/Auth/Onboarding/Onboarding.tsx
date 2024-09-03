@@ -11,7 +11,7 @@ import { useTheme } from "@shopify/restyle";
 import Slide, { SLIDER_HEIGHT, BORDER_RADIUS } from "./Slide";
 import Dot from "./Dot";
 import SubSlide from "./SubSlide";
-import { Theme } from "../../../theme";
+import { Theme } from "../../components/Theme";
 
 const { width } = Dimensions.get("window");
 
