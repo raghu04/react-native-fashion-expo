@@ -4,8 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "@shopify/restyle";
 
 import { Onboarding } from "./src/Auth";
-import { LoadAssets } from "./src/components";
-import theme from "./theme";
+import { LoadAssets, theme } from "./src/components";
 
 const AuthStack = createNativeStackNavigator();
 
@@ -17,7 +16,7 @@ const fonts = {
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider {...{ theme }}>
       <LoadAssets {...{ fonts }}>
         <SafeAreaProvider style={{ flex: 1 }}>
           <GestureHandlerRootView style={{ flex: 1 }}>
